@@ -32,7 +32,7 @@ def send(point, cid):
             'latitude': point.latitude,
             'longitude': point.longitude,
             'id': cid,
-            'time': point.time,
+            'time': str(point.time),
         }}]
     }
 
