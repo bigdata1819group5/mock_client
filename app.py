@@ -7,7 +7,7 @@ import requests
 
 
 FN = 'data/tehran_0.gpx'
-URL = 'http://localhost:8082/topics/carloc'
+URL = 'http://localhost:8082/topics/cari'
 
 
 def produce(filename):
@@ -28,12 +28,9 @@ def produce(filename):
 
 def send(point, cid):
     data = {
-        'records': [{'value': {
-            'latitude': point.latitude,
-            'longitude': point.longitude,
-            'id': cid,
-            'time': str(point.time),
-        }}]
+        'records': [{'value': '{},{},{},{}'.format(
+            cid, str(point.time), point.latitude, point.longitude,
+        )}]
     }
 
     headers = {
