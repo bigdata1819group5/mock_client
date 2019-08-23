@@ -5,9 +5,11 @@ import json
 import gpxpy
 import requests
 
+TOPIC = 'vehiclelocation'
+HOST = 'http://localhost:8000'
 
 FN = 'data/tehran_0.gpx'
-URL = 'http://localhost:8082/topics/cari'
+URL = '{}/topics/{}'.format(HOST, TOPIC)
 
 
 def produce(filename):
