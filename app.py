@@ -29,7 +29,7 @@ def produce(filename):
 def send(point, cid):
     data = {
         'records': [{'value': '{},{},{},{}'.format(
-            cid, str(point.time), point.latitude, point.longitude,
+            cid, str(point.time.replace(tzinfo=None)), point.latitude, point.longitude,
         )}]
     }
 
