@@ -1,3 +1,4 @@
+from datetime import datetime
 import random
 from uuid import uuid4
 from os import listdir
@@ -9,11 +10,11 @@ import gpxpy
 from locust import HttpLocust, TaskSet, task
 
 
-TOPIC = 'testtopic'
+TOPIC = 'vehiclelocation'
 DATA_DIR = 'data/'
 
 TRACES_SET = list()
-CO_ID_LIST = list(range(10))
+CO_ID_LIST = [1, 2]
 
 
 class Trace(TaskSet):
@@ -33,6 +34,7 @@ class Trace(TaskSet):
             self.send(point, self.vehicle_id, self.co_id)
 
     def send(self, point, vehicle_id, company_id):
+        point.time = point.time or datetime.utcnow()
         data = {
             'records': [{'value': '{},{},{},{},{}'.format(
                 vehicle_id, company_id, str(point.time.replace(tzinfo=None)),
